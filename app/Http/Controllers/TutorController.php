@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class TutorController extends Controller
 {
-    public function create(TutorPostRequest $request)
+
+    public function index()
+    {
+        return Tutor::all() ?? 'Não encontrado';
+    }
+
+    public function store(TutorPostRequest $request)
     {
         $tutor = new Tutor();
 
@@ -25,7 +31,7 @@ class TutorController extends Controller
         return response($request->all());
     }
 
-    public function find(int $id)
+    public function show(int $id)
     {
         $user = Tutor::find($id);
 

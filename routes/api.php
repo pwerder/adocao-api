@@ -3,5 +3,7 @@
 use App\Http\Controllers\TutorController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/cadastrar', [TutorController::class, 'create']);
-Route::get('/tutores/{id}', [TutorController::class, 'find']);
+
+Route::resources([
+    'tutores' => TutorController::class,
+]);

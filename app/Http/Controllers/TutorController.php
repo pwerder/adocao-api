@@ -40,4 +40,9 @@ class TutorController extends Controller
         }
         return response('Não encontrado', 404);
     }
+
+    public function destroy(int $id)
+    {
+        return Tutor::destroy($id) ? 'Sucesso ao deletar usuário' : 'Falha ao deletar usuário';
+    }
 }

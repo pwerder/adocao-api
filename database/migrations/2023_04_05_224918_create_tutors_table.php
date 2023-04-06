@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('tutors', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('email', 20);
+            $table->string('name');
+            $table->string('email');
             $table->string('password');
-            $table->string('telephone', 20)->nullable();
-            $table->string('city', 100)->nullable();
+            $table->string('telephone', 50)->nullable();
+            $table->string('city')->nullable();
             $table->string('profile_picture')->nullable();
             $table->longText('about')->nullable();
             $table->timestamps();

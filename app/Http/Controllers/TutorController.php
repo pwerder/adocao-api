@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TutorPostRequest;
+use App\Http\Requests\TutorPutRequest;
 use App\Models\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,6 @@ class TutorController extends Controller
         $tutor = new Tutor();
 
         $name = htmlspecialchars($request->name, ENT_QUOTES);
-        $email = filter_var($request->email, FILTER_VALIDATE_EMAIL);
         $password = Hash::make($request->password);
 
         $tutor->name = $name;
@@ -39,6 +39,12 @@ class TutorController extends Controller
             return response($user, 302);
         }
         return response('Não encontrado', 404);
+    }
+
+    public function update(TutorPutRequest $request, int $id)
+    {
+        Tutor::whereId($id)->update($request->all());
+        return Tutor::find($id);
     }
 
     public function destroy(int $id)

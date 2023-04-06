@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TutorPostRequest;
 use App\Models\Tutor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class TutorController extends Controller
@@ -21,6 +22,16 @@ class TutorController extends Controller
         $tutor->password = $password;
         $tutor->save();
 
-        return \response($request->all());
+        return response($request->all());
+    }
+
+    public function find(int $id)
+    {
+        $user = Tutor::find($id);
+
+        if ($user) {
+            return response($user, 302);
+        }
+        return response('Não encontrado', 404);
     }
 }
